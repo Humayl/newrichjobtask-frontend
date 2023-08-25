@@ -28,6 +28,6 @@ RUN usermod -aG docker vscode
 COPY --from=public.ecr.aws/docker/library/docker:latest / /
 CMD [ "npm", "start" ]
 
-FROM nginx:1.13-alpine
+FROM public.ecr.aws/nginx/nginx:1.25-alpine
 
 COPY --from=builder /code/build /usr/share/nginx/html

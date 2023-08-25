@@ -12,22 +12,3 @@ RUN npm ci
 COPY . /code
 
 CMD [ "npm", "start" ]
-
-FROM development AS builder
-
-RUN npm run build
-
-FROM development as dev-envs
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends git
-
-RUN useradd -s /bin/bash -m vscode
-RUN groupadd docker
-RUN usermod -aG docker vscode
-# install Docker tools (cli, buildx, compose)
-COPY --from=public.ecr.aws/docker/library/docker:latest / /
-CMD [ "npm", "start" ]
-
-FROM public.ecr.aws/nginx/nginx:1.25-alpine
-
-COPY --from=builder /code/build /usr/share/nginx/html

@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1.4
 
-FROM node:lts AS development
+FROM public.ecr.aws/docker/library/node:lts AS development
 
 ENV CI=true
 ENV PORT=3000

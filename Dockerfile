@@ -25,7 +25,7 @@ RUN useradd -s /bin/bash -m vscode
 RUN groupadd docker
 RUN usermod -aG docker vscode
 # install Docker tools (cli, buildx, compose)
-COPY --from=gloursdocker/docker / /
+COPY --from=public.ecr.aws/docker/library/docker:latest / /
 CMD [ "npm", "start" ]
 
 FROM nginx:1.13-alpine

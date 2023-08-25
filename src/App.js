@@ -5,7 +5,7 @@ import "./App.css";
 function App() {
   const [message, setMessage] = useState();
   useEffect(() => {
-    fetch("/api/")
+    fetch("http://newrich-jobtask-alb-159873671.us-east-1.elb.amazonaws.com/api/")
       .then(res => res.json())
       .then(res => setMessage(res.message))
       .catch(console.error);
